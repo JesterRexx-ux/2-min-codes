@@ -1,0 +1,22 @@
+# magic ball 8 mini program
+import random
+import time
+# Positive answer
+li=['It is certain','It is decidedly so', 'Without a doubt', 'Yes definitely',
+    'You may rely on it', 'As I see it', 'yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes']
+
+# Negative answer
+mi=["Don't count on it" ,'My reply is no' ,'My sources say no' ,'Outlook not so good','Very doubtful']
+
+# Neutral answer
+ni=['Reply hazy try again','Ask again later' ,'Better not tell you now ' ,'Cannot predict now ','Concentrate and ask '
+                                                                                                'again']
+
+ci=[li,mi,ni]
+leko = random.choice(ci)
+time.sleep(2)
+
+meko=random.choice(leko)
+print('Your answer is on the way.....')
+time.sleep(3)
+print(meko)
