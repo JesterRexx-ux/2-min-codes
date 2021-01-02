@@ -1,0 +1,83 @@
+import random
+
+my_words =[]
+f = open("word.txt", "rt")
+for x in f:
+    word = str(x)
+    word = word.rstrip("\n") 
+    if(len(word)>2): 
+        my_words.append(word)
+f.close()
+
+def pick(my_words): 
+    rand_word = random.sample(my_words,1)
+    rand_word = str(rand_word[0]).upper() 
+    return(rand_word)
+
+def initial(rand_word): 
+    sent = ''
+    for i in range(len(rand_word)):
+        sent+='_'
+    return(sent)
+
+
+def usr_inp(get,word): 
+    for i in get:
+        print(i,end=' ')
+    inp = input('Please Enter a Letter : ')
+    inp = str(inp).upper()
+    if (len(inp)>1 or inp==''):
+        return(get)
+    else:
+        res = match(inp,get,word) 
+        return(res)
+
+def match(inp,get,word): 
+    getl = list(get)
+    for i in range (len(word)):
+        if inp == word[i]:
+            getl[i] = inp
+    gts=''
+    for x in getl:
+        gts+=x
+    return(gts)
+
+def play(get,word):
+    var = 0
+    max_limit = 8
+    while True:
+        
+        
+            
+        if(var>=max_limit): 
+            print('')
+            print('Your Maximum Wrong Guesses Is Exceed !')
+            print('You Lose !')
+            print('')
+            print('Word is : ',word)
+            break
+            
+        
+        print("Your Wrong Guesses left :",(max_limit-var))
+        ans = usr_inp(get,word)
+
+        if(ans == get):
+            print('')
+            var+=1
+            print('Wrong ! Try again')
+            print('')
+            
+        else:
+            get = ans
+            print('')
+            
+        if(ans.count('_')== 0): 
+            print('')
+            print('Yahoo ! You Win')
+            print('')
+            print('The Word Is : ',ans)
+            break
+
+word = pick(my_words)
+get = initial(word) 
+play(get,word) 
